@@ -1,0 +1,23 @@
+{
+  "name": "g-drugtrial",
+  "version": "0.0.1",
+  "description": "Another adults-only interactive piece. Standard disclaimer: All individuals featured are fictional and should not refer to any real people, furthermore all adults are over the age of 18. If you, the user, are not over the age of legal consent in your region, please do not use this content.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thaewyn/g-drugtrial.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Thaewyn/g-drugtrial/issues"
+  },
+  "homepage": "https://github.com/Thaewyn/g-drugtrial#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-session": "^1.17.1"
+  }
+}
