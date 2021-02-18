@@ -13,12 +13,16 @@ class Girl {
     this.birthday = deets.birthday || "";
     this.isEmployed = deets.isEmployed || false;
     this.job = deets.job || "";
-    this.milkCapacity = deets.milkCapacity || 0.5;
-    this.milkProduction = 0;
+    this.loveLevel = deets.love || 0;
+    this.milkCapacity = deets.milkCapacity || 0.5; //liters
+    this.milkProduction = 0; //liters per day
+    this.currentMilk = 0;
+    this.wasMilkedThisWeek = false;
     this.isPregnant = false;
     this.currentPregNumChildren = 0;
     this.daysPregnant = 0;
     this.gestationLengthDays = 45;
+    this.gaveBirthThisWeek = false;
     this.timesGivenBirth = 0;
     this.numChildren = 0;
     this.multiplesChance = deets.multiplesChance || 0;
@@ -47,11 +51,75 @@ class Girl {
     }
   }
   /**
-   * Called at the end of every week, see what happens. Might need to pass
-   * a reference to the event controller?
+   * Called at the end of every week, see what happens. This should handle all state
+   * changes not affected by outside events.
    */
   handleWeek() {
-
+    this.handleGestation();
+    this.handleMilkProduction();
+  }
+  endOfWeekCleanup() {
+    this.wasMilkedThisWeek = false;
+    this.gaveBirthThisWeek = false;
+  }
+  /**
+   * Called whenever a girl is milked during the week. Calculate output, increased capacity,
+   * adjust stats, etc. Return amount of milk produced.
+   * @returns {number} amount of milk collected
+   */
+  handleMilking() {
+    let milkQty = 0;
+    if(this.milkProduction == 0) {
+      return 0;
+    } else {
+      milkQty = this.currentMilk;
+      this.currentMilk = 0;
+      this.milkProduction += 0.1;
+      this.milkCapacity += 0.5;
+    }
+    return milkQty;
+  }
+  /**
+   * handle weekly output. Returns a count of the number of times the girl had to milk
+   * this week to not become over-full.
+   */
+  handleMilkProduction() {
+    let milkAmount = (this.milkProduction * 7);
+    let timesMilked = Math.floor(milkAmount / this.milkCapacity);
+    return timesMilked;
+  }
+  /**
+   * Time passes, the baby(ies) grow. At a certain point (halfway?) increase lactation.
+   * If it's time to give birth, call that as well
+   * @returns {boolean} did she give birth?
+   */
+  handleGestation() {
+    if(this.isPregnant) {
+      this.daysPregnant += 7;
+      if(this.daysPregnant > (this.gestationLengthDays * 0.6)) {
+        //begin/increase lactation
+        this.milkProduction += 1;
+        this.milkCapacity += 1;
+      }
+      if(this.daysPregnant > this.gestationLengthDays) {
+        this.handleBirth();
+        return true;
+      }
+    }
+    return false;
+  }
+  /**
+   * Called from handleGestation if she's due. 
+   */
+  handleBirth() {
+    this.numChildren += this.currentPregNumChildren;
+    this.currentPregNumChildren = 0;
+    this.isPregnant = false;
+    this.timesGivenBirth++;
+    this.gaveBirthThisWeek = true;
+    if(this.gestationLengthDays > 9) {
+      this.gestationLengthDays -= 5
+    }
   }
 }
 
