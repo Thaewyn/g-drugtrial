@@ -1,4 +1,4 @@
-import {Event, EventPage} from "../event";
+const {Event, EventPage} = require("../event");
 
 let prologue = new Event("prologue", false);
 prologue.addPage(1,new EventPage([
@@ -10,4 +10,4 @@ prologue.addPage(1,new EventPage([
   {speaker:"thoughts", line:"Wait."}
 ], "Wake up..."));
 
-export default prologue;
+module.exports = prologue;

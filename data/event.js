@@ -66,4 +66,4 @@ class EventPage {
   }
 }
 
-export {Event, EventPage};
+module.exports = {Event, EventPage};
