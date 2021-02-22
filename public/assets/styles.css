@@ -1,3 +1,11 @@
 * {
   box-sizing:border-box;
 }
+
+.speaker {
+  margin: 10px;
+}
+
+div.hidden {
+  opacity: 0;
+}

@@ -23,7 +23,7 @@ module.exports = function(app) {
   });
 
   app.get("/api/event", function(req,res) {
-    console.log("api/event - get the current event for this session's user.");
+    //console.log("api/event - get the current event for this session's user.");
     //console.log(req.session.gamedata);
     //console.log(req.session.gamedata.currentEvent);
     let pageData = req.session.gamedata.currentEvent.pages[req.session.gamedata.currentPage];

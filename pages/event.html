@@ -2,13 +2,29 @@
 <html>
   <head>
     <title>Trials and Titillation - Events</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/styles.css" />
   </head>
-  <body>
-    <section class="main-content">
-      <button class="skipBtn">Skip</button>
-      <h1 class="eventName">Event Name</h1>
-      <p class="line">random something said.</p>
-      <button class="endBtn">End</button>
+  <body class="bg-dark">
+    <section class="main-content container bg-dark vh-100">
+      <div class="row header">
+        <div class="col-10">
+          <h1 class="text-light eventTitle">Event name</h1>
+        </div>
+        <div class="col-2 align-self-end">
+          <button class="btn btn-warning skipBtn">Skip</button>
+        </div>
+      </div>
+      <div class="row script">
+        <div class="col">
+          
+        </div>
+      </div>
+      <div class="row footer justify-content-end hidden">
+        <div class="col-2">
+          <button class="btn btn-primary endBtn">End</button>
+        </div>
+      </div>
     </section>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="assets/scripts/event.js"></script>
