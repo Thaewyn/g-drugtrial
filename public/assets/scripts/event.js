@@ -2,13 +2,12 @@ let currentLine = 0;
 let totalLines = 0;
 
 $(document).ready(() => {
-  console.log("js document ready on event");
-  console.log("init on event page. Get event from server to display.");
+  //console.log("js document ready on event");
   $.ajax({
     url:"/api/event",
     method:"GET"
   }).done((data) => {
-    console.log(data);
+    //console.log(data);
     //pageData = data;
     totalLines = data.data.script.length;
     currentLine = 0;
@@ -26,9 +25,9 @@ function renderPage(pageData) {
     if(i > 0) {
       rowClass+=" hidden";
     }
-    let newLine = $("<div class='"+rowClass+"'>"+
+    let newLine = $("<div class='"+rowClass+" "+item.speaker+"'>"+
         "<div class='col-2'>"+
-          "<div class='"+item.speaker+" text-light'>"+item.speaker+"</div>"+
+          "<div class='speaker text-light'>"+item.speaker+"</div>"+
         "</div>"+
         "<div class='col-10'>"+
           "<div class='card'>"+
@@ -59,4 +58,13 @@ function showNext(e) {
   }
 }
 
+function showNextKey(e) {
+  e.preventDefault();
+  //console.log(e);
+  if(e.code == "Space") {
+    showNext(e);
+  }
+}
+
 $(".main-content").on("click", showNext);
+$(document).on("keyup", showNextKey);
