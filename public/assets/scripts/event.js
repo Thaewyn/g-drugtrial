@@ -13,6 +13,10 @@ $(document).ready(() => {
     currentLine = 0;
     renderPage(data);
   });
+
+  $(".main-content").on("click", showNext);
+  $(document).on("keyup", showNextKey);
+  $(".skipBtn").on("click", skipPage);
 });
 
 function renderPage(pageData) {
@@ -45,7 +49,7 @@ function renderPage(pageData) {
 }
 
 function skipPage() {
-
+  $(".hidden").removeClass("hidden");
 }
 
 function showNext(e) {
@@ -65,6 +69,3 @@ function showNextKey(e) {
     showNext(e);
   }
 }
-
-$(".main-content").on("click", showNext);
-$(document).on("keyup", showNextKey);
